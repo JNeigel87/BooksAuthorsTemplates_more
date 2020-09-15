@@ -1,0 +1,17 @@
+body {
+    background-color: darkgrey;
+}
+p1, p2 {
+    display: block;
+    color: black;
+    font-size: 20px;
+}
+h1 {
+    font-size: 40px;
+    color: royalblue;
+    font-family: cursive;
+}
+.books {
+    font-size: 20px;
+    color: darkblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;

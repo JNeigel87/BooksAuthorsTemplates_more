@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/books.css' %}">
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+    <title>Books MainPage</title>
+</head>
+<body>
+    <div class="books">
+        <h1>{{book.title}}</h1>
+        <p1>ID:{{book.id}}</p1>
+        <b1>Description:{{book.desc}}</b1>
+        <p2>Authors: </p2>
+            <ul>
+                {% for authors in book.authors.all %}
+                    <li>{{authors.first_name}} {{authors.last_name}}</li>
+                {% endfor %}
+            </ul>
+        <h4>Add Author
+            <form action="/addAuthor/{{book.id}}" method="post">
+                {% csrf_token %}
+                <select name="authorinfo" id="">
+                    {% for authors in author %}
+                        {% if authors not in book.authors.all %}
+                    <option value="{{authors.id}}">{{authors.first_name}} {{authors.last_name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                
+                </select>
+                <input type="submit" value="Add">
+            </form>
+        </h4>
+        <h5>Delete Author
+            <form action="/deleteAuthor/{{book.id}}" method="post">
+                {% csrf_token %}
+                <select name="authorinfo" id="">
+                    {% for authors in author %}
+                        {% if authors in book.authors.all %}
+                    <option value="{{authors.id}}">{{authors.first_name}} {{authors.last_name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                
+                </select>
+                <input type="submit" value="Delete">
+            </form>
+        </h5>
+        <a href="/">Return To Home</a>
+    </div>
+
+</body>
+</html>

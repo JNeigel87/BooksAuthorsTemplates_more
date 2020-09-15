@@ -1,0 +1,33 @@
+body {
+    background-color: darkslategrey;
+}
+.addBook, .books {
+    display: inline-block;
+    vertical-align: top;
+    width: 250px;
+    height: 300px;
+}
+p1, p2, c1, c2 {
+    display: block;
+    color: lightgrey;
+    font-size: 20px;
+}
+p2 {
+    width: 250px
+}
+h1 {
+    font-size: 40px;
+    color: royalblue;
+    font-family: cursive;
+}
+.messages {
+    font-size: 30px;
+    color: red;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+a {
+    font-size: 20px;
+    color: lightgrey;
+
+}

@@ -1,0 +1,41 @@
+body {
+    background-color: darkslategrey;
+}
+.addBook, .books {
+    display: inline-block;
+    vertical-align: top;
+    width: 250px;
+    height: 300px;
+}
+p1, p2 {
+    display: block;
+    color: lightgrey;
+    font-size: 20px;
+}
+h1 {
+    font-size: 40px;
+    color: royalblue;
+    font-family: cursive;
+}
+.books {
+    margin: 71px 0px 0px 275px;
+    font-size: 20px;
+    color: darkblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+table {
+    padding: 8px;
+}
+
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 9px;
+    color: Black;
+}
+
+tr:nth-child(even) {
+    background-color: gray;
+    color: black;
+
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bookupdate.css' %}">
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+    <title>Books Update</title>
+</head>
+<body>
+    <div class="editBook"><h1>Edit Book</h1>
+        <c1>Current Title: {{book.title}}</c1>
+        <c2>Current Description: {{book.desc}}</c2>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/edit/{{book.id}}" method="post">
+            {% csrf_token %}
+            <p1>Title: <input type="text" name="title" /></p1>
+            <p2>Description: <textarea name="desc" id="EditDesc" cols="30" rows="10"></textarea></p2>
+            <input type="submit" value="Edit Book" />
+        </form>
+        <a href="/">Return To Main Page</a>
+
+        <!-- {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div> -->
+
+    <!-- <div class="books">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Action</th>
+            </tr>
+            {% for books in all_the_books %}
+                <tr>
+                    <td>{{ books.id }}</td>
+                    <td>{{ books.title }}</td>
+                    <td><a href="/books/{{books.id}}">View</a></td>
+                </tr>
+            {% endfor %}
+        </table> -->
+    </div>
+</body>
+</html>

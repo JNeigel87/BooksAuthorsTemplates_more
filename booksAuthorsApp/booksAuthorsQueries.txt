@@ -1,0 +1,108 @@
+Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby:
+>>> Books.objects.all()
+<QuerySet []>
+>>> Books.objects.create(title="C Sharp", desc="first book")
+<C Sharp 1>
+>>> Books.objects.create(title="Java", desc="second book")
+<Java 2>
+>>> Books.objects.create(title="Python", desc="third book")
+<Python 3>
+>>> Books.objects.create(title="PHP", desc="fourth book")
+<PHP 4>
+>>> Books.objects.create(title="Ruby", desc="fifth book")
+<Ruby 5>
+
+Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevsky, William Shakespeare, Lau Tzu
+>>> Authors.objects.create(first_name="Jane", last_name="Austen")
+<Jane 1>
+>>> Authors.objects.create(first_name="Emily", last_name="Dickinson")
+<Emily 2>
+>>> Authors.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+<Fyodor 3>
+>>> Authors.objects.create(first_name="William", last_name="Shakespeare")
+<William 4>
+>>> Authors.objects.create(first_name="Lau", last_name="Tzu")
+<Lau 5>
+>>> Authors.objects.all()
+<QuerySet [<Jane 1>, <Emily 2>, <Fyodor 3>, <William 4>, <Lau 5>]>
+>>>
+
+Change the name of the C Sharp book to C#:
+<QuerySet [<C Sharp 1>, <Java 2>, <Python 3>, <PHP 4>, <Ruby 5>]>
+>>> c=Books.objects.get(id=1)
+>>> c.title = "C#"
+>>> c.save()
+>>> Books.objects.all()
+<QuerySet [<C# 1>, <Java 2>, <Python 3>, <PHP 4>, <Ruby 5>]>
+
+Change the first name of the 4th author to Bill:
+>>> Authors.objects.all()
+<QuerySet [<Jane 1>, <Emily 2>, <Fyodor 3>, <William 4>, <Lau 5>]>
+>>> c=Authors.objects.get(id=4)
+>>> c.first_name="Bill"
+>>> c.save()
+>>> Authors.objects.all()
+<QuerySet [<Jane 1>, <Emily 2>, <Fyodor 3>, <Bill 4>, <Lau 5>]>
+>>>
+
+Assign the first author to the first 2 books:
+>>> firstAuthor=Authors.objects.get(id=1)
+>>> firstBook=Books.objects.get(id=1)
+>>> firstBook.authors.add(firstAuthor)
+>>> secondBook=Books.objects.get(id=2)
+>>> secondBook.authors.add(firstAuthor)
+>>>
+
+Asign the second author to the first 3 books:
+>>> secondAuthor=Authors.objects.get(id=2)
+>>> thirdBook=Books.objects.get(id=3)
+>>> firstBook.authors.add(secondAuthor)
+>>> secondBook.authors.add(secondAuthor)
+>>> thirdBook.authors.add(secondAuthor)
+
+Assign the third author to the first 4 books:
+>>> thirdAuthor=Authors.objects.get(id=3)
+>>> fourthBook=Books.objects.get(id=4)
+>>> firstBook.authors.add(thirdAuthor)
+>>> secondBook.authors.add(thirdAuthor)
+>>> thirdBook.authors.add(thirdAuthor)
+>>> fourthBook.authors.add(thirdAuthor)
+>>>
+
+Assign the fourth author to the first 5 books(allbooks):
+>>> fourthAuthor=Authors.objects.get(id=4)
+>>> fifthBook=Books.objects.get(id=5)
+>>> firstBook.authors.add(fourthAuthor)
+>>> secondBook.authors.add(fourthAuthor)
+>>> thirdBook.authors.add(fourthAuthor)
+>>> fourthBook.authors.add(fourthAuthor)
+>>> fifthBook.authors.add(fourthAuthor)
+>>>
+
+Retrieve all the authors from the 3rd book:
+>>> thirdBook.authors.all()
+<QuerySet [<Emily 2>, <Fyodor 3>, <Bill 4>]>
+>>>
+
+Remove the first author of the 3rd book:
+>>> thirdBook.authors.remove(secondAuthor)
+>>> thirdBook.authors.all()
+<QuerySet [<Fyodor 3>, <Bill 4>]>
+>>>
+
+Add the 5th author as one of the authors of the 2nd book:
+>>> fifthAuthor=Authors.objects.get(id=5)
+>>> secondBook.authors.add(fifthAuthor)
+>>> secondBook.authors.all()
+<QuerySet [<Jane 1>, <Emily 2>, <Fyodor 3>, <Bill 4>, <Lau 5>]>
+
+Find all the books that the 3rd author is part of:
+>>> thirdAuthor.books.all()
+<QuerySet [<C# 1>, <Java 2>, <Python 3>, <PHP 4>]>
+>>>
+
+Find all the authors that contributed to the 5th book:
+>>> fifthBook.authors.all()
+<QuerySet [<Bill 4>]>
+>>>
+
